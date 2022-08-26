@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block body %}
+{% if  items|length > 0  %}
+
+    <div class="h-screen bg-gray-300">
+	<div class="py-12">
+    <div class="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg  md:max-w-5xl">
+        <div class="md:flex ">
+            <div class="w-full p-4 px-5 py-5">
+            	<div class="md:grid md:grid-cols-2 gap-2 ">
+            		<div class="col-span-2 p-5">
+                        <div class="flex justify-between items-center mt-6 pt-6"> 
+            			<h1 class="text-xl font-medium ">Shopping Cart</h1>
+            				<div class="flex items-center">
+            					<span class="text-md pr-2 font-medium text-blue-500">pay</span>
+            					<i class="fa fa-arrow-right text-sm "></i>
+            				</div>
+            			</div>
+                        {% for item in items %}
+            			<div class="flex justify-between items-center mt-6 pt-6">
+            				<div class="flex  items-center">
+								{% if item.product.image is not null %}
+								<img width="60" class="rounded-full" src="{{item.product.image }}" alt="image du produit {{item.product.title}}"/>
+							{% else %}
+								<img width="60" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="{{item.product.title}}"/>
+							{% endif %}
+            					<div class="flex flex-col ml-3">
+            						<span class="md:text-md font-medium">{{item.product.title}}</span>
+            					</div>	
+            				</div>
+            				<div class="flex justify-center items-center">
+            					<div class="pr-8 flex ">
+            						<a href="{{path('app_cart_remove',{'id':item.product.id})}}"><span class="font-semibold">-</span></a>
+            						<input type="text" class="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2" value="{{item.quantity}}">
+            						<a href="{{path('app_cart_plus',{'id':item.product.id})}}"><span class="font-semibold">+</span></a>
+            					</div>
+
+            					<div class="pr-8 ">
+            						<span class="text-xs font-medium">{{item.product.price}} €</span>
+            					</div>
+                                <div class="pr-8 ">
+            						<span class="text-xs font-medium">{{item.product.price * item.quantity }} €</span>
+            					</div>
+            					<div>     						
+                                    <a href="{{path('app_cart_deleteItem',{'id':item.product.id})}}" class="btn btn-danger btn-md">
+                                        <i class="fa fa-close text-xs font-medium"></i> 
+                                    </a>
+            					</div>
+            				</div>
+            			</div>
+                     {% endfor %}
+
+            			<div class="flex justify-between items-center mt-6 pt-6 border-t"> 
+            				<div class="flex items-center">
+            					<i class="fa fa-arrow-left text-sm pr-2"></i>
+            					<span class="text-md  font-medium text-blue-500">
+                                <a href="{{path('app_home')}}">Continue Shopping</i></a>
+                                </span>
+            				</div>
+
+            				<div class="flex justify-center items-end">
+            					<span class="text-sm font-medium text-gray-400 mr-1">Subtotal:</span>
+            					<span class="text-lg font-bold text-gray-800 "> {{total}}</span>	
+            				</div>	
+            			</div>	
+            		</div>
+            	</div>         
+           </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% else %}
+    <p class="text-center fw-bolder fs-2 mb-5">Your cart is empty</p>
+	<div class="flex items-center mb-5 justify-content-center">
+            					<i class="fa fa-arrow-left text-sm pr-2"></i>
+            					<span class="text-lg  font-medium text-blue-500">
+                                <a href="{{path('app_home')}}">Add item to your cart</i></a>
+                                </span>
+            				</div>
+{% endif %}
+
+{% endblock %}
