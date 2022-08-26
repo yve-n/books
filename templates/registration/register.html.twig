@@ -19,10 +19,10 @@
             /*box-shadow: inset 0 0.75rem 2rem rgba(229, 225, 187, 0.5);*/
         }
     </style>
+        <h1 class="text-center fw-bolder fs-2">CREATE YOUR ACCOUNT</h1>
     <div class="form container ">
         <div class="text-center mb-5">
-            <h1>create your account</h1>
-            <p>already have an account?</p><a href="{{ path('app_login') }}" class="btn btn-outline-primary" role="button">Connectez-vous !</a>
+            <p>already have an account?</p><a href="{{ path('app_login') }}" class="btn btn-outline-primary" role="button">Log in !</a>
         </div>
         {{ form_start(registrationForm) }}
         <div class="container">
@@ -39,7 +39,24 @@
             </div>
 
             <div class="mb-3">
+                {{ form_row(registrationForm.phoneNumber) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(registrationForm.address) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(registrationForm.country) }}
+            </div>
+
+            <div class="mb-3">
                 {{ form_row(registrationForm.password) }}
+            </div>
+
+            
+            <div class="mb-3">
+                {{ form_row(registrationForm.agreeTerms) }}
             </div>
         </div>
 

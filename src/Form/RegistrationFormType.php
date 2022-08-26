@@ -26,18 +26,18 @@ class RegistrationFormType extends AbstractType
                 ],
                 'attr' => [
                     'autocomplete' => 'off',
-                    'placeholder'=> 'Saisir votre nom',
+                    'placeholder'=> 'Type your name',
                     'class' => 'form-control',
                 ],
             ])
             ->add('firstName', TextType::class,[
-                'label' => 'firstName',
+                'label' => 'FirstName',
                 'label_attr' => [
                     'class' => 'form-label'
                 ],
                 'attr' => [
                     'autocomplete' => 'off',
-                    'placeholder'=> 'Saisir votre prénom',
+                    'placeholder'=> 'Type your firstName',
                     'class' => 'form-control',
 
                 ],
@@ -51,6 +51,42 @@ class RegistrationFormType extends AbstractType
                     'autocomplete' => 'off',
                     'placeholder'=> 'type your email address',
                     'class' => 'form-control',
+                ],
+            ])
+            ->add('phoneNumber', TextType::class,[
+                'label' => 'phoneNumber',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'autocomplete' => 'off',
+                    'placeholder'=> 'Type your phoneNumber',
+                    'class' => 'form-control',
+
+                ],
+            ])
+            ->add('address', TextType::class,[
+                'label' => 'address',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'autocomplete' => 'off',
+                    'placeholder'=> 'Type your address',
+                    'class' => 'form-control',
+
+                ],
+            ])
+            ->add('country', TextType::class,[
+                'label' => 'country',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'autocomplete' => 'off',
+                    'placeholder'=> 'Type your country',
+                    'class' => 'form-control',
+
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
