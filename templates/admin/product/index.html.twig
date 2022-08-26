@@ -1,0 +1,65 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+{% if books is empty %}
+ <div class="card-header py-3 d-flex justify-content-between">
+    <h6 class="m-0 font-weight-bold text-primary">Aucun produit</h6>
+    <a class="btn btn-primary" href="{{path('app_admin_product_add')}}">Add Book</a>
+</div>
+{% else %}
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">All products</h6>
+                            <a class="btn btn-primary" href="{{path('app_admin_product_add')}}">Add Book</a>
+    </div>                 
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Price</th>
+                                            <th>Category</th>
+											<th>Description</th>
+											<th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Price</th>
+                                            <th>Category</th>
+											<th>Description</th>
+											<th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+									{% for book in books %}
+                                        <tr>
+                                            <td>{{book.title}}</td>
+                                            <td>{{book.author}} </td>
+                                            <td>{{book.price}} €</td>
+                                            <td>{{book.category.name}}</td>
+                                            <td>{{book.description}}</td>
+											<td>
+                                            <div class="d-flex mt-3 justify-content-center">
+                                                <a class="btn btn-info mr-3" href="{{path('app_admin_product_edit',{'id':book.id})}}">Edit</a>
+                                                <form action="{{path('app_admin_product_delete',{'id':book.id})}}" method="post">
+                                                    <input type="hidden" name="_token" value="{{csrf_token('delete'~ book.id)}}">
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                            </td>
+										</tr>
+									{% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+        </div>
+{% endif %}
+{% endblock %}

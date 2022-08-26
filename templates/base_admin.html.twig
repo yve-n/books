@@ -14,7 +14,7 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{path('app_admin_dashboard')}}">
             {%include '_partials/_image.html.twig'%}
     </a>
@@ -25,10 +25,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">Products</a>
+                <a class="nav-link" href="{{path('app_admin_product_index')}}">Products</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Category</a>
+                <a class="nav-link" href="{{path('app_admin_category_index')}}">Category</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">Users</a>
@@ -39,6 +39,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
                     <li><a href="{{ path('app_logout') }}" class="dropdown-item">Log out</a></li>
+                    <li><a href="{{ path('app_home') }}" class="dropdown-item">Visit site</a></li>
                 </ul>
             </li>
         </ul>

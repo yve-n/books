@@ -48,7 +48,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         if ($token->getRoleNames()[0] == 'ROLE_ADMIN') {
             return new RedirectResponse($this->urlGenerator->generate('app_admin_dashboard'));
         }else {
-            return new RedirectResponse($this->urlGenerator->generate('app_profile_user_profile'));
+            return new RedirectResponse($this->urlGenerator->generate('app_user_profile'));
         }
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));

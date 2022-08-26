@@ -1,0 +1,33 @@
+{% extends 'base_admin.html.twig'%}
+
+{% block title %} Edit {% endblock %}
+{% block h1 %} Edit book{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="pt-5 mb-5">
+            <h3>Edit a book </h3>
+            <hr>
+        </div>
+        {{form_start(formEdit)}}
+        <div class=" mb-3">
+            {{form_row(formEdit.title)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formEdit.author)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formEdit.price)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formEdit.description)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formEdit.category)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formEdit.images)}}
+        </div>
+        <button type="submit" class="my-3 col btn btn-primary">OK</button>
+        {{form_end(formEdit)}}
+	</div>
+{% endblock %}

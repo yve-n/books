@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block title %} category!{% endblock %}
+{% block body %}
+	<section class="py-5">
+        <p class="text-center fw-bolder fs-3">... Select a  category ...</p>
+        <hr>
+		<div class="container px-4 px-lg-5 mt-5">
+			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				{% for category in categories %}
+					<div class="col mb-5">
+						<div class="card h-100">
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">
+										<a class="active" href="{{path('app_category_collection_book',{'id': category.id})}}">{{category.name}}</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	{% if collection_of_books is not null %}
+		{% if collection_of_books is not empty %}
+			<section class="py-5">
+				<div class="container px-4 px-lg-5 mt-5">
+					<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+						{% for book in collection_of_books %}
+							<div class="col mb-5">
+								<div class="card h-100">
+									<div class="badge text-white position-absolute" style="top: 0.1rem; right: 0.5rem">
+										{{book.category.name}}
+									</div>
+									{% if book.image ?? null %}
+										<img class="card-img-top" src="{{book.image}}" alt="image du produit {{book.title}}"/>
+									{% else %}
+										<img class="card-img-top" src="https://via.placeholder.com/640x480.png/0099ee?text=reprehenderit" alt="image du produit {{book.title}}"/>
+									{% endif %}
+									<div class="card-body p-4">
+										<div class="text-center">
+											<h5 class="fw-bolder">{{book.title}}</h5>
+											<span class="text-muted text-decoration">{{book.price}}
+												€</span>
+										</div>
+									</div>
+									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent ">
+										<div class="text-center pb-3">
+											<a class="btn btn-outline-dark mt-auto" href="{{path('app_product_details', {'id' : book.id})}}">see more...</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		{% endif %}
+	{% endif %}
+{% endblock %}
